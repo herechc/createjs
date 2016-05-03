@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <title>vivo X5Pro:助你jump得更高</title>
+    <link type="text/css" rel="stylesheet" href="css/global.css?v=1001" />
+    <script type="text/javascript">
+
+
+        //设置
+        function setCookie(c_name, value, expiredays) {
+            var exdate = new Date()
+            exdate.setDate(exdate.getDate() + expiredays)
+            document.cookie = c_name + "=" + escape(value) +
+            ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+        }
+        //获取cookie
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1);
+                if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+            }
+            return "";
+        }
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        if (getQueryString("helpId")) {
+            setCookie('helpId', getQueryString("helpId"), 1);
+        }
+
+
+
+        // if (!getCookie('online150626_sessionWechat')) {
+        //     window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa060c8c2164c7977&redirect_uri=http://play9.pconline.com.cn/online150626/action/oauthWechat.jsp&response_type=code&scope=snsapi_userinfo&state=abcd&connect_redirect=1#wechat_redirect'
+        // }
+
+
+
+
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+        var html = document.querySelector('html');
+        var rem = html.offsetWidth / 6.4;
+        html.style.fontSize = rem + "px";
+
+
+
+        var g_w = 320,
+            g_h = 600,
+            g_strength = 100,//体力
+            g_prize = null,//获奖结果,'':none,'':erji,'':vivo
+            g_nickName = "",//用户名
+            g_isHit = 0;//是否中奖
+
+    </script>
+</head>
+<body>
+    <div id='view'>
+        
+        <div class="game">
+            <canvas id="gameCanvas" class="gameCanvas" width="320" height="600"></canvas>
+            <canvas id="gameCanvasFraction" class="gameCanvasFraction" width="320" height="61"></canvas>
+        </div>
+        <!--<label id="fps" style="background: #3d3d3d;font-size: 0.4rem;text-align: center; color: #fff;width: 2rem;height: 0.5rem;overflow: hidden;z-index: 99999999;position: absolute;left: 0;top: 0;">0</label>-->
+    </div>
+</body>
+</html>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch_for_zepto.js"></script>
+<script src="js/preloadjs-0.6.0.min.js"></script>
+<script src="js/soundjs-0.6.0.min.js"></script>
+<script src="js/tweenjs-0.6.0.combined.js"></script>
+<script src="js/easeljs-0.8.0.combined.js"></script>
+<script src="js/player.js?v=1002"></script>
+<script src="js/cloud.js?v=1003"></script>
+<script src="js/background.js?v=1002"></script>
+<script src="js/fraction.js?v=1002"></script>
+<script src="js/timer.js?v=1003"></script>
+<script src="js/donkeyJump.js?v=16"></script>
+<script src="js/paint.js?v=1002"></script>
+<script src="js/global.js?v=1009"></script>
+<script src="http://js.3conline.com/wap/common/wxApi.min.js" charset="utf-8" class="defer"></script>
+<script>
+   
+    console.log(window.innerHeight)
+</script>
+<script>
+
+
+    /* 预加载 */
+    var loadQueue1 = new createjs.LoadQueue(false);
+    loadQueue1.on("progress", function () {
+       
+    });
+    loadQueue1.on("complete", function () {
+        //初始化页面
+        my.init();
+        //显示页面
+         my.obj.dj.start();
+    });
+    loadQueue1.loadManifest([
+       
+
+        { src: "images/player.png" },
+        { src: "images/cloud.png" },
+        { src: "images/cloud2.png" },
+        { src: "images/cloud3.png" },
+        { src: "images/cloud4.png" },
+        { src: "images/cloud5.png" },
+        { src: "images/cloud6.png" },
+        { src: "images/result.png" },
+        { src: "images/timer.png" },
+        { src: "images/bar.png" },
+        { src: "images/bg.png" }
+    ]);
+    //my.mask(true, true, $("mask_bd").length - 1);
+    //按键
+    document.addEventListener("keydown", function (e) {
+        //console.log(e.keyCode);
+        switch (e.keyCode) {
+            case 37:
+                my.obj.dj.getpara().obj.player.dir = -4;
+                break;
+            case 39:
+                my.obj.dj.getpara().obj.player.dir = 4;
+                break;
+        }
+    }, false);
+</script>
+
+
+<script>
+
+    wxApi.init(function () {
+      
+        var shareData = {
+            title: "快和小V一起跳出新高度 快给我送点体力，早日拿到vivo X5Pro",
+            desc: "双2.5D的小宇宙！能不能赢取vivo X5Pro就靠你了",
+            link: "http://www1.pconline.com.cn/magazine/wechat/201506/vivoJump/index.html?helpId=" + getCookie('online150626_sessionWechat'),
+            imgUrl: "http://www1.pconline.com.cn/magazine/wechat/201506/vivoJump/images/shareIcon.jpg",
+            success: function () {
+                my.setStrength();
+            }
+        };
+        wx.onMenuShareAppMessage(shareData);// 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
+        wx.onMenuShareTimeline(shareData);// 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+        wx.onMenuShareQQ(shareData);// 监听“分享到QQ”按钮点击、自定义分享内容及分享结果接口
+        wx.onMenuShareWeibo(shareData);// 监听“分享到微博”按钮点击、自定义分享内容及分享结果接口
+    });
+</script>

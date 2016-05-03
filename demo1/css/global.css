@@ -1,0 +1,789 @@
+﻿html, body, * {
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul, li {
+    list-style: none;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
+input, select {
+    -webkit-user-select: auto;
+}
+
+a[title="站长统计"] {
+    display: none;
+}
+
+input {
+    border: none;
+    background: none;
+    font-size: 0.28rem;
+}
+
+html{
+    background-color: #68C7FF;
+}
+
+body {
+    background-color: #68C7FF;
+    font-family: Arial;
+}
+
+#view {
+    background-color: #68C7FF;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.cimg {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.sgBolt {
+    background-image: url("../images/page/bolt.png");
+    width: 0.36rem;
+    height: 0.64rem;
+}
+
+.btnAgain {
+    background-image: url("../images/page/btnAgain.png");
+    width: 1.85rem;
+    height: 0.87rem;
+}
+
+.btnPrize {
+    background-image: url("../images/page/btnPrize.png");
+    width: 1.85rem;
+    height: 0.87rem;
+}
+
+.btnShared {
+    background-image: url("../images/page/btnShared.png");
+    width: 4.14rem;
+    height: 0.88rem;
+}
+
+.mask {
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    display: none;
+    -webkit-transition: opacity 500ms;
+}
+
+.mask.show {
+    opacity: 1;
+}
+
+.mask_bd {
+    display: none;
+}
+
+.loading {
+    width: 100%;
+    height: 6.14rem;
+    margin-top: -3.07rem;
+    opacity: 1;
+    z-index: 9999;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transition: opacity 500ms;
+}
+
+.loading.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading .bar {
+    background-image: url("../images/page/loading.png");
+    line-height: 3.3rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: #68C7FF;
+    width: 6.16rem;
+    height: 6.14rem;
+    margin-left: -3.08rem;
+    overflow: hidden;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 0;
+}
+
+.loading p {
+    font-size: 0.4rem;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: -1.3rem;
+}
+
+.game {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.game.show {
+    opacity: 1;
+    z-index: 99990;
+}
+
+canvas.gameCanvas {
+    background-color: #8AD3FE;
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+canvas.gameCanvasFraction {
+    width: 100%;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sgBalloon1 {
+    background-image: url("../images/page/balloon1.png");
+    width: 0.18rem;
+    height: 0.46rem;
+    z-index: 1;
+    position: absolute;
+    left: 1.5rem;
+    top: 3.5rem;
+    opacity: 1;
+    -webkit-transform: translate(0,0);
+    -webkit-animation: anim_sgBalloon1 10000ms linear normal infinite;
+}
+
+@-webkit-keyframes anim_sgBalloon1 {
+    0% {
+        opacity: 1;
+        -webkit-transform: translate(0,0);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate(-1rem,-4rem);
+    }
+}
+
+.sgBalloon2 {
+    background-image: url("../images/page/balloon2.png");
+    width: 0.25rem;
+    height: 0.42rem;
+    z-index: 1;
+    position: absolute;
+    right: 0.8rem;
+    top: 2rem;
+    opacity: 1;
+    -webkit-transform: translate(0,0);
+    -webkit-animation: anim_sgBalloon2 10000ms linear normal infinite;
+}
+
+@-webkit-keyframes anim_sgBalloon2 {
+    0% {
+        opacity: 1;
+        -webkit-transform: translate(0,0);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate(1rem,-2rem);
+    }
+}
+
+.sgBalloon3 {
+    background-image: url("../images/page/balloon3.png");
+    width: 0.42rem;
+    height: 0.52rem;
+    z-index: 1;
+    position: absolute;
+    right: 0.20rem;
+    top: 4.98rem;
+    opacity: 1;
+    -webkit-transform: translate(0,0);
+    -webkit-animation: anim_sgBalloon3 10000ms linear normal infinite;
+}
+
+@-webkit-keyframes anim_sgBalloon3 {
+    0% {
+        opacity: 1;
+        -webkit-transform: translate(0,0);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate(0.5rem,-1rem);
+    }
+}
+
+/* 云 */
+.sgCloud1,
+.sgCloud2 {
+    background-image: url("../images/page/cloud1.png");
+    width: 1.04rem;
+    height: 0.64rem;
+    position: absolute;
+    right: -1.04rem;
+    -webkit-transform: translate(0,0);
+    -webkit-animation: anim_sgCloud 20000ms linear normal infinite;
+}
+
+.sgCloud1 {
+    top: -0.1rem;
+    -webkit-animation: anim_sgCloud 20000ms linear normal infinite;
+}
+
+.sgCloud2 {
+    opacity: 0.6;
+    top: 1rem;
+    -webkit-animation: anim_sgCloud 24000ms linear 2000ms normal infinite;
+}
+
+@-webkit-keyframes anim_sgCloud {
+    0% {
+        -webkit-transform: translate(0,0);
+    }
+
+    100% {
+        -webkit-transform: translate(-7.44rem,0);
+    }
+}
+
+/* 大标题 */
+.sgClouds {
+    background-image: url("../images/page/clouds.png");
+    width: 6.28rem;
+    height: 4.02rem;
+}
+
+.sgTit {
+    background-image: url("../images/page/tit.png");
+    width: 5.84rem;
+    height: 3.82rem;
+}
+
+/* vivo仔 */
+.sgUser {
+    background-image: url("../images/page/user.png");
+    width: 0.85rem;
+    height: 1.2rem;
+}
+
+.sgParachute {
+    background-image: url("../images/page/parachute.png");
+    width: 5.82rem;
+    height: 6.5rem;
+}
+
+.sgGroup {
+    width: 0.85rem;
+    height: 1.2rem;
+    display: inline-block;
+    position: absolute;
+    left: 2rem;
+}
+
+.sgGroup .sgUser {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sgGroup .sgParachute {
+    position: absolute;
+    left: -2.36rem;
+    bottom: 0.67rem;
+    -webkit-transform: rotate(0,0);
+    -webkit-transform-origin: 50% 100%;
+    -webkit-animation: anim_sgParachute 2000ms ease alternate infinite;
+}
+
+@-webkit-keyframes anim_sgParachute {
+    0% {
+        -webkit-transform: rotateZ(-5deg);
+    }
+
+    100% {
+        -webkit-transform: rotateZ(5deg);
+    }
+}
+
+.sgGroup3 {
+    width: 100%;
+    height: 4.02rem;
+    margin-top: -2.01rem;
+    z-index: 9;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    opacity: 0;
+    -webkit-transform: translate(0,-0.5rem);
+    -webkit-transition: opacity 500ms,-webkit-transform 500ms;
+}
+
+.sgGroup3.show {
+    opacity: 1;
+    -webkit-transform: translate(0,0);
+}
+
+.sgGroup3 .sgClouds {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sgGroup3 .sgGroup {
+    position: absolute;
+    left: 2.65rem;
+    bottom: -0.62rem;
+    opacity: 0;
+    -webkit-transform: translate(0,7rem);
+    -webkit-transition: opacity 500ms,-webkit-transform 2000ms ease-out;
+}
+
+.sgGroup3 .sgGroup.show {
+    opacity: 1;
+    -webkit-transform: translate(0,0);
+}
+
+.sgGroup3 .sgTit {
+    margin-left: -2.92rem;
+    position: absolute;
+    left: 50%;
+    top: -0.45rem;
+    opacity: 0;
+    -webkit-transform: scale(1,1);
+}
+
+.sgGroup3 .sgTit.show {
+    -webkit-animation: anim_sgTit 500ms;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes anim_sgTit {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0,0);
+    }
+
+    90% {
+        opacity: 1;
+        -webkit-transform: scale(1.1,1.1);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1,1);
+    }
+}
+
+/* 按钮 */
+.btnRule,
+.btnStart,
+.btnUser {
+    width: 1.85rem;
+    height: 0.88rem;
+}
+
+.btnRule {
+    background-image: url("../images/page/btnRule.png");
+}
+
+.btnStart {
+    background-image: url("../images/page/btnStart.png");
+}
+
+.btnUser {
+    background-image: url("../images/page/btnUser.png");
+}
+
+.sgGroup2 {
+    width: 5.85rem;
+    height: 0.88rem;
+    margin-left: -2.925rem;
+    z-index: 99;
+    position: absolute;
+    left: 50%;
+    bottom: 6%;
+    opacity: 0;
+    -webkit-transition: opacity 500ms;
+}
+
+.sgGroup2.show {
+    opacity: 1;
+}
+
+.sgGroup2 .cimg {
+    position: absolute;
+    top: 0;
+}
+
+.sgGroup2 .btnRule {
+    left: 0;
+}
+
+.sgGroup2 .btnStart {
+    margin-left: -0.925rem;
+    left: 50%;
+}
+
+.sgGroup2 .btnUser {
+    right: 0;
+}
+
+/* -------------------------------- 遮罩内容 -------------------------------- */
+.btnClose {
+    background-image: url("../images/page/btnClose.png");
+    width: 0.97rem;
+    height: 0.97rem;
+}
+
+.mask_bd .btnClose {
+    position: absolute;
+}
+/* ---------- 抽奖 ---------- */
+.w_prize {
+    background: url("../images/page/prize_box.png") no-repeat 50% 50%;
+    background-size: cover;
+    width: 5.42rem;
+    height: 4.54rem;
+    margin-left: -2.71rem;
+    margin-top: -2.27rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.w_prize .btnClose {
+    z-index: 19;
+    right: -0.2rem;
+    top: -0.2rem;
+}
+
+#cas,
+.w_prize .result {
+    width: 4.05rem;
+    height: 3.02rem;
+    z-index: 9;
+    position: absolute;
+    left: 0.64rem;
+    top: 0.49rem;
+    -webkit-transition: opacity 0.5s;
+}
+
+#cas {
+    z-index: 19;
+}
+
+.w_prize .result.none {
+    background-image: url("../images/page/prize_none.jpg");
+}
+
+.w_prize .result.erji {
+    background-image: url("../images/page/prize_erji.jpg");
+}
+.w_prize .result.dianyuan {
+    background-image: url("../images/page/prize_dianyuan.jpg");
+}
+.w_prize .result.vivo {
+    background-image: url("../images/page/prize_vivo.jpg");
+}
+
+.w_prize .text {
+    font-size: 0.36rem;
+    text-align: center;
+    line-height: 1.1rem;
+    color: #fff;
+    width: 100%;
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+/* ---------- 规则 ---------- */
+.w_rule {
+    background: url("../images/page/rule_box.png?v=1003") no-repeat 50% 50%;
+    background-size: cover;
+    width: 5.42rem;
+    height: 7.74rem;
+    margin-left: -2.71rem;
+    margin-top: -3.87rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.w_rule .btnClose {
+    z-index: 19;
+    right: -0.1rem;
+    top: -0.3rem;
+}
+
+/*.w_rule .text {
+    width: 3.82rem;
+    height: 5.42rem;
+    overflow: hidden;
+    overflow-y: auto;
+    position: absolute;
+    left: 0.8rem;
+    top: 1.7rem;
+}
+
+.w_rule .text img {
+    display: block;
+}*/
+/* ---------- 不能抽奖 ---------- */
+.w_unprize {
+    background: url("../images/page/unprize.png?v=1002") no-repeat 50% 50%;
+    background-size: cover;
+    width: 5.68rem;
+    height: 7.36rem;
+    margin-left: -2.84rem;
+    margin-top: -3.68rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.w_unprize .btnClose {
+    z-index: 19;
+    right: 0;
+    top: -1rem;
+}
+/* ---------- 分享 ---------- */
+.w_shared {
+    background: url("../images/page/shared_bg.png?v=1001") no-repeat 50% 0.45rem;
+    background-size: 4.91rem 7.37rem;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0rem;
+}
+/*.w_shared .text{
+    background-image: url("../images/page/shared_text.png");
+    vertical-align: -0.15rem;
+    width: 3.58rem;
+    height: 0.63rem;
+    margin-right: 0.1rem;
+}*/
+.w_shared p{
+    text-align: center;
+    font-size: 0.60rem;
+    color: #ffdf04;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 8rem;
+}
+.w_shared .btnClose {
+    left: 0.2rem;
+    top: 0.2rem;
+}
+/* ---------- 完善个人信息 ---------- */
+.w_user {
+    background: url("../images/page/wUser_bg.png") no-repeat 50% 50%;
+    background-size: cover;
+    width: 5.41rem;
+    height: 8.33rem;
+    margin-left: -2.705rem;
+    margin-top: -4.165rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.w_user .btnClose {
+    z-index: 19;
+    right: -0.1rem;
+    top: -0.3rem;
+}
+
+.w_user .prize {
+    width: 4.22rem;
+    height: 1.12rem;
+    position: absolute;
+    left: 0.51rem;
+    top: 1.57rem;
+}
+
+.w_user .prize.none {
+    background-image: url("../images/page/wUser_tag_none.png");
+}
+
+.w_user .prize.erji {
+    background-image: url("../images/page/wUser_tag_erji.png");
+}
+
+.w_user .prize.vivo {
+    background-image: url("../images/page/wUser_tag_vivo.png");
+}
+
+.w_user input {
+    /*background-color: #000;*/
+    width: 2.47rem;
+    height: 0.45rem;
+    position: absolute;
+    left: 1.57rem;
+}
+
+.w_user .txtName {
+    top: 3.98rem;
+}
+
+.w_user .txtTel {
+    top: 4.76rem;
+}
+
+.w_user .txtAddr {
+    top: 5.45rem;
+}
+
+.w_user .btnSub {
+    width: 100%;
+    height: 0.88rem;
+    overflow: hidden;
+    left: 0;
+    bottom: 0.68rem;
+}
+
+/* ---------- 剩余体力 ---------- */
+.w_power {
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    height: 5.66rem;
+    margin-top: -2.83rem;
+    position: absolute;
+    left: 0;
+    top: 50%;
+}
+
+.w_power label {
+    font-size: 4rem;
+    color: #FFDF04;
+    display: block;
+    line-height: 3.1rem;
+    padding-bottom: 0.5rem;
+}
+
+.w_power p {
+    font-size: 0.56rem;
+    padding-bottom: 0.3rem;
+}
+
+.w_power p .sgBolt {
+    vertical-align: -0.15rem;
+    font-size: 0.56rem;
+    margin-left: 0.2rem;
+    margin-right: 0.1rem;
+}
+
+.w_power p b {
+    font-weight: 400;
+    color: #ffdf04;
+}
+
+.w_power .btnStart {
+}
+
+/* ---------- 游戏结果 ---------- */
+.w_gameover {
+    width: 6.03rem;
+    height: 8.03rem;
+    margin-left: -3.015rem;
+    margin-top: -4.015rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.w_gameover .text {
+    background-image: url("../images/page/gameover_data.png");
+    width: 6.03rem;
+    height: 5.82rem;
+    margin-left: -3.015rem;
+    position: absolute;
+    left: 50%;
+    top: 0;
+}
+
+.w_gameover label {
+    color: #ee4a49;
+    font-size: 0.4rem;
+    position: absolute;
+}
+
+.w_gameover .name {
+    top: 3.3rem;
+    left: 2.9rem;
+}
+
+.w_gameover .fraction {
+    top: 4rem;
+    left: 3.7rem;
+}
+
+.w_gameover .strength {
+    top: 4.8rem;
+    left: 3.8rem;
+}
+
+.w_gameover .btnAgain,
+.w_gameover .btnPrize,
+.w_gameover .btnShared {
+    position: absolute;
+}
+
+.w_gameover .btnAgain {
+    left: 0.9rem;
+    bottom: 1.1rem;
+}
+
+.w_gameover .btnPrize {
+    left: 3.24rem;
+    bottom: 1.1rem;
+}
+
+.w_gameover .btnShared {
+    left: 0.9rem;
+    bottom: 0;
+}
